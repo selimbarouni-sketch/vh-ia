@@ -84,12 +84,21 @@ export function Logo({ className = '' }: { className?: string }) {
   return (
     <span className={cx('inline-flex items-center gap-2.5', className)}>
       <span className="grid h-9 w-9 place-items-center rounded-xl bg-grape text-white shadow-[0_8px_20px_-10px_rgba(91,69,245,.9)]">
-        <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor" aria-hidden="true">
-          <path d="M17.6 7.1a6.9 6.9 0 00-3.6-1c-2.9 0-4.9 1.5-4.9 3.8 0 2.1 1.5 3.1 4.1 3.6 2 .4 2.7.8 2.7 1.7 0 .9-.9 1.5-2.3 1.5-1.5 0-2.8-.5-3.9-1.4l-1.3 1.9c1.3 1.2 3.3 1.9 5.1 1.9 2.9 0 4.9-1.5 4.9-4 0-2.2-1.5-3.2-4.3-3.8-1.9-.4-2.6-.7-2.6-1.5 0-.8.8-1.3 2.1-1.3 1.2 0 2.2.4 3.1 1.1l1.2-1.9z" />
-          <circle cx="19" cy="18.5" r="1.8" className="text-sky" fill="currentColor" />
+        <svg
+          viewBox="0 0 24 24"
+          className="h-5 w-5"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={2.2}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M3.6 5.5l3.6 12h1.5l3.6-12" />
+          <path d="M15.6 5.5v12M21 5.5v12M15.6 11.5H21" />
         </svg>
       </span>
-      <span className="text-xl font-extrabold tracking-tight text-ink">Sumly</span>
+      <span className="text-xl font-extrabold tracking-tight text-ink">VH.IA</span>
     </span>
   )
 }
@@ -98,7 +107,7 @@ export function Logo({ className = '' }: { className?: string }) {
 
 export function Mascot({ className = 'h-40 w-40' }: { className?: string }) {
   return (
-    <svg viewBox="0 0 220 220" className={className} role="img" aria-label="Sumly mascot">
+    <svg viewBox="0 0 220 220" className={className} role="img" aria-label="VH.IA mascot">
       <defs>
         <linearGradient id="body" x1="0" y1="0" x2="1" y2="1">
           <stop offset="0%" stopColor="#8b6dff" />

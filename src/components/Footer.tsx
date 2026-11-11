@@ -29,7 +29,7 @@ export default function Footer() {
               <span className="grid h-9 w-9 place-items-center rounded-xl bg-white/10">
                 <Icon name="sparkle" className="h-5 w-5 text-butter" />
               </span>
-              <span className="text-xl font-extrabold tracking-tight">Sumly</span>
+              <span className="text-xl font-extrabold tracking-tight">VH.IA</span>
             </span>
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/65">
               AI grading, insight and practice for mathematics teachers. Built by teachers, in classrooms, for the
@@ -68,7 +68,7 @@ export default function Footer() {
 
         <div className="mt-14 flex flex-col gap-4 border-t border-white/10 pt-7 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-white/50">
-            &copy; {new Date().getFullYear()} Sumly Labs. All rights reserved.
+            &copy; {new Date().getFullYear()} VH.IA Labs. All rights reserved.
           </p>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-white/50">
             <span>Terms</span>

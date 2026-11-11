@@ -1,9 +1,9 @@
 {
-  "name": "sumly",
+  "name": "vh-ia",
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "description": "Sumly — AI grading and insight for mathematics teachers",
+  "description": "VH.IA — AI grading and insight for mathematics teachers",
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",

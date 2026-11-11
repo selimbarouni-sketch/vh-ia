@@ -36,7 +36,7 @@ const pillars = [
   {
     icon: 'pen',
     title: 'Grading that reads the work',
-    body: 'Handwriting, scratch work, crossed-out lines, multi-step algebra. Sumly follows the reasoning, awards partial credit, and explains where the logic broke — in language a student can act on.',
+    body: 'Handwriting, scratch work, crossed-out lines, multi-step algebra. VH.IA follows the reasoning, awards partial credit, and explains where the logic broke — in language a student can act on.',
     points: ['Partial credit that matches your rubric', 'Comments you edit before release', 'CCSS, TEKS and your local standards'],
   },
   {
@@ -65,7 +65,7 @@ export function Pillars() {
                 Three teachers built this after one <span className="gradient-text">very long Sunday</span> of grading.
               </>
             }
-            sub="Sumly is not a generic AI that was pointed at a math paper. It was designed around how math is actually taught, marked and re-taught."
+            sub="VH.IA is not a generic AI that was pointed at a math paper. It was designed around how math is actually taught, marked and re-taught."
           />
         </Reveal>
 
@@ -100,10 +100,10 @@ export function Pillars() {
 const tabs = [
   {
     id: 'grading',
-    label: 'AI grading',
+    label: 'AI correction',
     icon: 'pen',
-    title: 'Grading that explains the math',
-    body: 'Sumly reads handwriting, tracks multi-step reasoning, and marks the way a math teacher does: method, not just answer. Every comment cites the step it came from.',
+    title: 'Correction that explains the math',
+    body: 'VH.IA reads handwriting, tracks multi-step reasoning, and marks the way a math teacher does: method, not just answer. Every comment cites the step it came from.',
     bullets: [
       'Reads handwriting at 95% accuracy, including crossed-out work',
       'Awards partial credit intelligently across multi-step solutions',
@@ -129,7 +129,7 @@ const tabs = [
     label: 'Targeted practice',
     icon: 'target',
     title: 'Differentiation in minutes, not evenings',
-    body: 'Turn assessment data into action. Sumly generates practice from each student\u2019s own mistakes, then hands you the pen: edit anything, assign it, or print it.',
+    body: 'Turn assessment data into action. VH.IA generates practice from each student\u2019s own mistakes, then hands you the pen: edit anything, assign it, or print it.',
     bullets: [
       'Practice that targets the actual misconception',
       'Every item editable, with the answer key attached',
@@ -363,7 +363,7 @@ export function Privacy() {
                   Student work is never training data.
                 </h2>
                 <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-white/80">
-                  Sumly was built for minors, so privacy was a design constraint from day one — not a policy page added
+                  VH.IA was built for minors, so privacy was a design constraint from day one — not a policy page added
                   later. Papers, comments and rosters stay in your school&rsquo;s tenant, are encrypted in transit and at
                   rest, and are deleted on your schedule.
                 </p>
@@ -422,7 +422,7 @@ export function FinalCTA() {
                 <span className="gradient-text">Decide tomorrow.</span>
               </h2>
               <p className="mt-4 text-[15px] leading-relaxed text-muted">
-                Upload a class set of scanned papers, watch Sumly mark them, and keep every comment you like. No credit
+                Upload a class set of scanned papers, watch VH.IA mark them, and keep every comment you like. No credit
                 card, no onboarding call, no setup.
               </p>
               <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">

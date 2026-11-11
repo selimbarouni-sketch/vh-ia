@@ -15,28 +15,29 @@ export default function Hero() {
         <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
           <span className="eyebrow">
             <span className="h-1.5 w-1.5 rounded-full bg-mint" />
-            Now grading for Algebra I through Calculus
+            AI correction for secondary & higher-ed math
           </span>
 
           <h1 className="mt-5 max-w-[15ch] text-balance text-[2.6rem] font-extrabold leading-[1.03] tracking-[-0.045em] text-ink sm:text-6xl lg:text-[4.1rem]">
-            Every paper graded.
+            Every assessment corrected.
             <br />
-            <span className="gradient-text">Every gap found.</span>
+            <span className="gradient-text">Every mistake explained.</span>
           </h1>
 
           <p className="mt-5 max-w-xl text-base leading-relaxed text-ink2 sm:text-lg">
-            Sumly reads handwritten math, follows multi-step reasoning, and awards partial credit the way you would — then
-            turns each mistake into practice that actually targets it. You review everything before a student sees a word.
+            VH.IA corrects handwritten math assessments, follows multi-step reasoning, and awards partial credit the way
+            you would — then turns each mistake into practice that targets it. Nothing reaches a student until you approve
+            it.
           </p>
 
           <div className="mt-8 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
             <a href="#start" className="btn btn-primary px-7 py-3.5 text-[15px]">
-              Grade my first class free
+              Correct my first class free
               <Icon name="arrow" className="h-4 w-4" />
             </a>
-            <a href="#how" className="btn btn-secondary px-7 py-3.5 text-[15px]">
+            <a href="#correction" className="btn btn-secondary px-7 py-3.5 text-[15px]">
               <Icon name="play" className="h-4 w-4" />
-              See a live grade
+              Correct a sample now
             </a>
           </div>
 
@@ -71,7 +72,7 @@ export default function Hero() {
             <p className="text-left text-xs leading-snug text-muted">
               <span className="font-bold text-ink">1,400+ math departments</span>
               <br />
-              grade with Sumly every week
+              grade with VH.IA every week
             </p>
           </div>
         </div>

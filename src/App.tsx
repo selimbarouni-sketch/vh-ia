@@ -1,6 +1,7 @@
 import Nav from './components/Nav'
 import Hero from './components/Hero'
 import Footer from './components/Footer'
+import Grader from './components/Grader'
 import { DeepDive, FinalCTA, Integrations, Pillars, Privacy, Stats, Testimonials } from './components/Sections'
 
 export default function App() {
@@ -12,6 +13,7 @@ export default function App() {
         <Stats />
         <Pillars />
         <DeepDive />
+        <Grader />
         <Testimonials />
         <Integrations />
         <Privacy />

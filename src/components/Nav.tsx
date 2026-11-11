@@ -5,7 +5,7 @@ type MenuItem = { title: string; desc: string; icon: string; href: string }
 
 const MENUS: Record<string, MenuItem[]> = {
   Product: [
-    { title: 'AI grading', desc: 'Read the work, award the partial credit.', icon: 'pen', href: '#grading' },
+    { title: 'AI correction', desc: 'Read the work, award the partial credit.', icon: 'pen', href: '#correction' },
     { title: 'Actionable insights', desc: 'Mastery by skill, not just a score.', icon: 'chart', href: '#insights' },
     { title: 'Targeted practice', desc: 'Activities built from real mistakes.', icon: 'target', href: '#practice' },
     { title: 'AI assistant', desc: 'An assistant that knows your class.', icon: 'chat', href: '#assistant' },
@@ -66,7 +66,7 @@ export default function Nav() {
               : 'bg-transparent',
           )}
         >
-          <a href="#top" className="shrink-0" aria-label="Sumly home">
+          <a href="#top" className="shrink-0" aria-label="VH.IA home">
             <Logo />
           </a>
 
@@ -112,6 +112,9 @@ export default function Nav() {
                 ) : null}
               </div>
             ))}
+            <a href="#correction" className="rounded-full px-3.5 py-2 text-sm font-semibold text-ink2 hover:text-grape">
+              Live demo
+            </a>
             <a href="#pricing" className="rounded-full px-3.5 py-2 text-sm font-semibold text-ink2 hover:text-grape">
               Pricing
             </a>

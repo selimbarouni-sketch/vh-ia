@@ -195,7 +195,7 @@ export function PracticeMock() {
 
 export function AssistantMock() {
   return (
-    <MockFrame label="Sumly assistant" tone="text-grapesoft">
+    <MockFrame label="VH.IA assistant" tone="text-grapesoft">
       <div className="grid gap-2">
         <div className="ml-auto max-w-[85%] rounded-2xl rounded-br-md bg-grape px-3 py-2 text-[11px] leading-relaxed text-white">
           My period 3 is still shaky on the discriminant. Build a warm-up that uses their actual mistakes.
