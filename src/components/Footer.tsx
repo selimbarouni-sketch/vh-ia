@@ -2,20 +2,20 @@ import { Icon, Logo } from './ui'
 
 const columns = [
   {
-    title: 'Product',
-    links: ['AI grading', 'Actionable insights', 'Targeted practice', 'AI assistant', 'Pricing'],
+    title: 'Produit',
+    links: ['Correction IA', 'Analyses actionnables', 'Exercices ciblés', 'Assistant IA', 'Tarifs'],
   },
   {
-    title: 'Resources',
-    links: ['Blog', 'Tutorials', 'Webinars', 'Teacher PD', 'Help center'],
+    title: 'Ressources',
+    links: ['Blog', 'Tutoriels', 'Webinaires', 'Formation enseignants', "Centre d'aide"],
   },
   {
-    title: 'Integrations',
-    links: ['Canvas', 'Google Classroom', 'Schoology', 'Clever', 'All integrations'],
+    title: 'Intégrations',
+    links: ['Canvas', 'Google Classroom', 'Schoology', 'Clever', 'Toutes les intégrations'],
   },
   {
-    title: 'Company',
-    links: ['About', 'Careers', 'Contact', 'Privacy', 'Terms'],
+    title: 'Entreprise',
+    links: ['À propos', 'Carrières', 'Contact', 'Confidentialité', 'Conditions'],
   },
 ]
 
@@ -32,8 +32,8 @@ export default function Footer() {
               <span className="text-xl font-extrabold tracking-tight">VH.IA</span>
             </span>
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/65">
-              AI grading, insight and practice for mathematics teachers. Built by teachers, in classrooms, for the
-              evenings you would rather have back.
+              Correction, analyses et exercices pour les professeurs de mathématiques. Conçu par des enseignants, en
+              classe, pour les soirées que vous préférez garder.
             </p>
             <div className="mt-6 flex gap-2.5">
               {['LinkedIn', 'Instagram', 'YouTube'].map((social) => (
@@ -68,18 +68,18 @@ export default function Footer() {
 
         <div className="mt-14 flex flex-col gap-4 border-t border-white/10 pt-7 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-white/50">
-            &copy; {new Date().getFullYear()} VH.IA Labs. All rights reserved.
+            &copy; {new Date().getFullYear()} VH.IA Labs. Tous droits réservés.
           </p>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-white/50">
-            <span>Terms</span>
-            <span>Privacy</span>
-            <span>Terms of sale</span>
-            <span className="text-white/70">English (US)</span>
+            <span>Conditions</span>
+            <span>Confidentialité</span>
+            <span>Conditions de vente</span>
+            <span className="text-white/70">Français (FR)</span>
           </div>
         </div>
 
         <p className="mt-10 text-center text-[13px] font-semibold tracking-tight text-white/40">
-          Teaching is human. The paperwork does not have to be.
+          L'enseignement est humain. La paperasse ne doit pas l'être.
         </p>
       </div>
     </footer>

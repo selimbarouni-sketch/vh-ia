@@ -1,12 +1,13 @@
 /**
- * Correction engine.
+ * Moteur de correction.
  *
- * A transparent, local rubric engine: it compares a student's submission against
- * an expected answer and the working steps the teacher expects to see, awards
- * partial credit, and explains every point it gives or withholds.
+ * Un barème transparent, exécuté localement : il compare la copie d'un élève
+ * à la réponse attendue et aux étapes que l'enseignant veut voir, attribue un
+ * crédit partiel et explique chaque point donné ou retiré.
  *
- * It runs entirely in the browser — no student work leaves the page. Swap
- * `gradeWork` for a model call to grade free-form handwriting instead.
+ * Tout se passe dans le navigateur — aucune copie ne quitte la page. Pour une
+ * correction d'écriture libre, remplacer `gradeWork` par un appel au modèle,
+ * côté serveur.
  */
 
 export type Exercise = {
@@ -50,7 +51,7 @@ const SYMBOLS: Array<[RegExp, string]> = [
   [/[\u201c\u201d]/g, '"'],
 ]
 
-/** Lowercase, unify math symbols, drop spacing and TeX scaffolding. */
+/** Minuscules, symboles unifiés, espaces et restes de TeX supprimés. */
 export function normalize(input: string): string {
   let s = input.toLowerCase()
   for (const [re, to] of SYMBOLS) s = s.replace(re, to)
@@ -68,14 +69,14 @@ function fractionValue(token: string): number {
   return Number(token)
 }
 
-/** Every number in a string, with fractions resolved to decimals. */
+/** Tous les nombres d'une chaîne, fractions converties en décimales. */
 export function numbers(input: string): number[] {
   const cleaned = normalize(input).replace(/(\d),(\d)/g, '$1.$2')
   const found = cleaned.match(/-?\d+(?:\.\d+)?(?:\/-?\d+(?:\.\d+)?)?/g) ?? []
   return found.map(fractionValue).filter((n) => Number.isFinite(n))
 }
 
-/** The student's final line — where the answer normally lives. */
+/** La dernière ligne de l'élève — là où se trouve normalement la réponse. */
 function finalLine(raw: string): string {
   const lines = raw
     .split(/\n+/)
@@ -88,9 +89,13 @@ function roundHalf(n: number): number {
   return Math.round(n * 2) / 2
 }
 
+function fr(n: number): string {
+  return String(n).replace('.', ',')
+}
+
 type ValueMatch = { found: number; negated: number; total: number }
 
-/** How many expected values appear in the student's numbers, and how many appear negated. */
+/** Combien de valeurs attendues apparaissent, et combien apparaissent avec le signe inverse. */
 function compareValues(expected: number[], actual: number[]): ValueMatch {
   const pool = [...actual]
   let found = 0
@@ -111,7 +116,7 @@ function compareValues(expected: number[], actual: number[]): ValueMatch {
   return { found, negated, total: expected.length }
 }
 
-/** Where a single working step shows up in the submission. */
+/** Où une étape apparaît dans la copie. */
 function stepCoverage(step: string, work: string): 'full' | 'values' | 'none' {
   const norm = normalize(work)
   if (norm.includes(normalize(step))) return 'full'
@@ -137,7 +142,7 @@ export function gradeWork(input: {
   const criteria: Criterion[] = []
   const flags: string[] = []
 
-  /* ---------------------------------------------------------- final answer */
+  /* ------------------------------------------------------ réponse finale */
   const answerText = finalLine(student)
   const expectedValues = numbers(expected)
   const studentValues = numbers(answerText)
@@ -149,48 +154,48 @@ export function gradeWork(input: {
 
   if (!normalizedAnswer) {
     answerStatus = 'review'
-    answerComment = 'No final answer found in the submission — nothing to compare against yet.'
-    flags.push('No final answer detected')
+    answerComment = "Aucune réponse finale trouvée dans la copie — rien à comparer pour l'instant."
+    flags.push('Aucune réponse finale détectée')
   } else if (expectedValues.length) {
     const { found, negated, total: count } = compareValues(expectedValues, studentValues)
     const ratio = (found + negated * 0.5) / count
     answerEarned = roundHalf(answerMax * ratio)
     if (found === count) {
       answerStatus = 'correct'
-      answerComment = `Final answer matches the expected ${expected}.`
+      answerComment = `La réponse finale correspond à ${expected}.`
     } else if (found + negated === count) {
       answerStatus = 'partial'
-      answerComment = `Right values, wrong sign: the expected answer is ${expected}.`
-      flags.push('Sign error in the final answer')
+      answerComment = `Les valeurs sont bonnes mais le signe est faux : la réponse attendue est ${expected}.`
+      flags.push('Erreur de signe dans la réponse finale')
     } else if (found + negated > 0) {
       answerStatus = 'partial'
-      answerComment = `Partially correct — expected ${expected}, submitted ${answerText}.`
-      flags.push('Incomplete final answer')
+      answerComment = `Partiellement juste — attendu ${expected}, rendu ${answerText}.`
+      flags.push('Réponse finale incomplète')
     } else {
       answerStatus = 'missing'
-      answerComment = `Expected ${expected}, submitted ${answerText}.`
-      flags.push('Final answer does not match')
+      answerComment = `Attendu ${expected}, rendu ${answerText}.`
+      flags.push('La réponse finale ne correspond pas')
     }
   } else if (normalizedAnswer.includes(normalize(expected))) {
     answerEarned = answerMax
     answerStatus = 'correct'
-    answerComment = `Final answer matches the expected form ${expected}.`
+    answerComment = `La réponse finale correspond à la forme attendue ${expected}.`
   } else {
     answerStatus = 'missing'
-    answerComment = `Expected ${expected}, submitted ${answerText}.`
-    flags.push('Final answer does not match')
+    answerComment = `Attendu ${expected}, rendu ${answerText}.`
+    flags.push('La réponse finale ne correspond pas')
   }
 
   criteria.push({
     id: 'answer',
-    label: 'Final answer',
+    label: 'Réponse finale',
     earned: answerEarned,
     max: answerMax,
     status: answerStatus,
     comment: answerComment,
   })
 
-  /* ---------------------------------------------------------------- working */
+  /* --------------------------------------------------------- raisonnement */
   let fullSteps = 0
   let valueSteps = 0
 
@@ -198,26 +203,26 @@ export function gradeWork(input: {
     const coverage = stepCoverage(step, student)
     let earned = 0
     let status: CriterionStatus = 'missing'
-    let comment = `No evidence of ${step} in the submitted work.`
+    let comment = `Aucune trace de ${step} dans la copie.`
 
     if (coverage === 'full') {
       earned = stepMax
       status = 'correct'
       fullSteps += 1
-      comment = `Working shows ${step}.`
+      comment = `Le raisonnement montre ${step}.`
     } else if (coverage === 'values') {
       earned = roundHalf(stepMax * 0.5)
       status = 'partial'
       valueSteps += 1
-      comment = `The values from ${step} appear, but the step itself is not written out.`
-      flags.push(`Step ${index + 1} not written out`)
+      comment = `Les valeurs de ${step} apparaissent, mais l'étape n'est pas rédigée.`
+      flags.push(`Étape ${index + 1} non rédigée`)
     } else {
-      flags.push(`Step ${index + 1} missing`)
+      flags.push(`Étape ${index + 1} manquante`)
     }
 
     criteria.push({
       id: `step-${index + 1}`,
-      label: `Step ${index + 1}`,
+      label: `Étape ${index + 1}`,
       earned,
       max: stepMax,
       status,
@@ -226,10 +231,10 @@ export function gradeWork(input: {
   })
 
   if (steps.length && fullSteps + valueSteps === 0) {
-    flags.push('Only a final answer — no working shown')
+    flags.push('Seule la réponse finale — aucune trace de raisonnement')
   }
 
-  /* ------------------------------------------------------------------ total */
+  /* -------------------------------------------------------------- total */
   const score = roundHalf(criteria.reduce((sum, c) => sum + c.earned, 0))
   const percent = Math.round((score / total) * 100)
   const matched = criteria.filter((c) => c.status === 'correct').length
@@ -239,14 +244,14 @@ export function gradeWork(input: {
 
   const verdict =
     percent >= 90
-      ? 'Full credit with clear working.'
+      ? 'Crédit complet, raisonnement clair.'
       : percent >= 60
-        ? 'Mostly there — one or two steps need a second look.'
+        ? 'Presque : une ou deux étapes à revoir.'
         : percent >= 30
-          ? 'Partial understanding: the method is visible but the reasoning breaks down.'
-          : 'Not yet — the submission does not follow the expected method.'
+          ? 'Compréhension partielle : la méthode est là, mais le raisonnement se brise.'
+          : "Pas encore — la copie ne suit pas la méthode attendue."
 
-  const summary = `${score} / ${total} · ${verdict}`
+  const summary = `${fr(score)} / ${total} · ${verdict}`
 
   return { score, total, percent, criteria, flags: [...new Set(flags)], summary, confidence }
 }
@@ -254,26 +259,26 @@ export function gradeWork(input: {
 export const SAMPLE_EXERCISES: Exercise[] = [
   {
     id: 'quadratic',
-    title: 'Algebra II — solve a quadratic',
-    prompt: 'Solve x² − 5x + 6 = 0',
-    expected: 'x = 2 or x = 3',
+    title: 'Algèbre II — équation du second degré',
+    prompt: 'Résolvez x² − 5x + 6 = 0',
+    expected: 'x = 2 ou x = 3',
     steps: ['(x − 2)(x − 3) = 0', 'x − 2 = 0', 'x − 3 = 0'],
     totalPoints: 20,
     student: 'x² − 5x + 6 = 0\n(x − 2)(x − 3) = 0\nx − 2 = 0  →  x = 2\nx = −2 or x = 3',
   },
   {
     id: 'integral',
-    title: 'Calculus — definite integral',
-    prompt: 'Evaluate ∫₀³ 2x dx',
+    title: 'Analyse — intégrale définie',
+    prompt: 'Calculez ∫₀³ 2x dx',
     expected: '9',
     steps: ['x²', '9 − 0 = 9'],
     totalPoints: 10,
-    student: '∫ 2x dx = x²\nfrom 0 to 3: 9 − 0 = 9\nanswer = 9',
+    student: '∫ 2x dx = x²\nde 0 à 3 : 9 − 0 = 9\nréponse = 9',
   },
   {
     id: 'linear',
-    title: 'Algebra I — linear equation',
-    prompt: 'Solve 3(x − 4) = 2x + 5',
+    title: 'Algèbre I — équation linéaire',
+    prompt: 'Résolvez 3(x − 4) = 2x + 5',
     expected: 'x = 17',
     steps: ['3x − 12 = 2x + 5', '3x − 2x = 5 + 12'],
     totalPoints: 10,

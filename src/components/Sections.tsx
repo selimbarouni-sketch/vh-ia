@@ -2,13 +2,13 @@ import { useState } from 'react'
 import { Avatar, cx, Icon, Reveal, SectionHeading } from './ui'
 import { AssistantMock, GradingMock, InsightsMock, PracticeMock } from './mocks'
 
-/* ------------------------------------------------------------- trust strip */
+/* ------------------------------------------------------------ bandeau clé */
 
 const stats = [
-  { value: '12 min', label: 'average time to grade a class set of 28 papers' },
-  { value: '95%', label: 'accuracy reading handwritten multi-step work' },
-  { value: '3.4 hrs', label: 'given back to every teacher each week' },
-  { value: '1,400+', label: 'math departments across 9 countries' },
+  { value: '12 min', label: 'temps moyen pour corriger une classe de 28 copies' },
+  { value: '95 %', label: 'de précision sur les raisonnements manuscrits en plusieurs étapes' },
+  { value: '3,4 h', label: 'rendues à chaque enseignant chaque semaine' },
+  { value: '1 400+', label: 'départements de mathématiques dans 9 pays' },
 ]
 
 export function Stats() {
@@ -30,26 +30,26 @@ export function Stats() {
   )
 }
 
-/* ---------------------------------------------------------------- pillars */
+/* --------------------------------------------------------------- piliers */
 
 const pillars = [
   {
     icon: 'pen',
-    title: 'Grading that reads the work',
-    body: 'Handwriting, scratch work, crossed-out lines, multi-step algebra. VH.IA follows the reasoning, awards partial credit, and explains where the logic broke — in language a student can act on.',
-    points: ['Partial credit that matches your rubric', 'Comments you edit before release', 'CCSS, TEKS and your local standards'],
+    title: 'Une correction qui lit la copie',
+    body: "Écriture manuscrite, brouillon, ratures, algèbre en plusieurs étapes. VH.IA suit le raisonnement, attribue le crédit partiel et explique où la logique se brise — dans des mots que l'élève peut utiliser.",
+    points: ['Un crédit partiel fidèle à votre barème', 'Des commentaires que vous modifiez avant envoi', 'CCSS, TEKS et vos référentiels locaux'],
   },
   {
     icon: 'chart',
-    title: 'Insight past the score',
-    body: 'A grade tells you what happened. Skill-level mastery tells you why. See exactly which standards each student owns, and which ones the whole class is quietly guessing at.',
-    points: ['Mastery by skill, student and class', 'Recurring error patterns detected', 'Growth tracked across the year'],
+    title: 'Voir au-delà de la note',
+    body: "Une note dit ce qui s'est passé. La maîtrise par compétence dit pourquoi. Voyez exactement quelles compétences chaque élève maîtrise — et celles que toute la classe devine en silence.",
+    points: ['Maîtrise par compétence, par élève et par classe', 'Détection des erreurs récurrentes', "Progression suivie sur l'année"],
   },
   {
     icon: 'target',
-    title: 'Practice built from real mistakes',
-    body: 'Every student gets practice aimed at their actual gap — not a generic worksheet. Fully editable, printable, or assignable online in one click.',
-    points: ['Targeted problem sets in minutes', 'Every item editable', 'Assign, print or export to your LMS'],
+    title: 'Des exercices nés des vraies erreurs',
+    body: "Chaque élève reçoit un travail ciblé sur sa lacune réelle, pas une fiche générique. Entièrement modifiable, imprimable ou assignable en un clic.",
+    points: ['Des fiches ciblées en quelques minutes', 'Chaque exercice modifiable', 'Assigner, imprimer ou exporter vers votre ENT'],
   },
 ]
 
@@ -59,13 +59,14 @@ export function Pillars() {
       <div className="container-page">
         <Reveal>
           <SectionHeading
-            eyebrow="Built by teachers, for teachers"
+            eyebrow="Conçu par des enseignants, pour des enseignants"
             title={
               <>
-                Three teachers built this after one <span className="gradient-text">very long Sunday</span> of grading.
+                Trois enseignants ont créé cet outil après <span className="gradient-text">un dimanche de corrections</span>{' '}
+                interminable.
               </>
             }
-            sub="VH.IA is not a generic AI that was pointed at a math paper. It was designed around how math is actually taught, marked and re-taught."
+            sub="VH.IA n'est pas une IA générique qu'on aurait pointée sur une copie de maths. L'outil est pensé à partir de la façon dont les maths s'enseignent, se corrigent et se réexpliquent."
           />
         </Reveal>
 
@@ -95,58 +96,58 @@ export function Pillars() {
   )
 }
 
-/* -------------------------------------------------------------- deep dive */
+/* ------------------------------------------------------------- le produit */
 
 const tabs = [
   {
     id: 'grading',
-    label: 'AI correction',
+    label: 'Correction IA',
     icon: 'pen',
-    title: 'Correction that explains the math',
-    body: 'VH.IA reads handwriting, tracks multi-step reasoning, and marks the way a math teacher does: method, not just answer. Every comment cites the step it came from.',
+    title: 'Une correction qui explique les maths',
+    body: "VH.IA lit l'écriture, suit le raisonnement en plusieurs étapes et corrige comme un professeur de maths : la méthode, pas seulement le résultat. Chaque commentaire cite l'étape d'où il vient.",
     bullets: [
-      'Reads handwriting at 95% accuracy, including crossed-out work',
-      'Awards partial credit intelligently across multi-step solutions',
-      'Rubrics align to CCSS, TEKS or the standards you paste in',
+      "Lecture de l'écriture manuscrite à 95 %, ratures comprises",
+      'Crédit partiel intelligent sur les solutions en plusieurs étapes',
+      'Barèmes alignés sur CCSS, TEKS ou les référentiels que vous collez',
     ],
     mock: <GradingMock />,
   },
   {
     id: 'insights',
-    label: 'Actionable insights',
+    label: 'Analyses',
     icon: 'chart',
-    title: 'Move past the grade, track the learning',
-    body: 'Every question is tagged to a skill, so a class set of papers becomes a map of what your students have actually mastered — and what to re-teach next.',
+    title: 'Dépassez la note, suivez les apprentissages',
+    body: "Chaque question est rattachée à une compétence : une pile de copies devient une carte de ce que vos élèves maîtrisent vraiment — et de ce qu'il faut reprendre.",
     bullets: [
-      'Skill-level mastery for each student, class and grading period',
-      'Error pattern detection: same mistake, many papers',
-      'Growth tracking from the first unit to the last',
+      'Maîtrise par compétence, élève, classe et période',
+      "Détection des schémas d'erreurs : la même faute, sur des dizaines de copies",
+      "Progression suivie de la première à la dernière séquence",
     ],
     mock: <InsightsMock />,
   },
   {
     id: 'practice',
-    label: 'Targeted practice',
+    label: 'Exercices ciblés',
     icon: 'target',
-    title: 'Differentiation in minutes, not evenings',
-    body: 'Turn assessment data into action. VH.IA generates practice from each student\u2019s own mistakes, then hands you the pen: edit anything, assign it, or print it.',
+    title: 'La différenciation en minutes, pas en soirées',
+    body: "Transformez les données d'évaluation en action. VH.IA génère des exercices à partir des erreurs de chaque élève, puis vous laisse la main : tout modifier, assigner ou imprimer.",
     bullets: [
-      'Practice that targets the actual misconception',
-      'Every item editable, with the answer key attached',
-      'Assign online, print, or push to your LMS',
+      'Des exercices qui ciblent la vraie erreur de compréhension',
+      'Chaque énoncé modifiable, avec le corrigé joint',
+      'Assigner en ligne, imprimer ou pousser vers votre ENT',
     ],
     mock: <PracticeMock />,
   },
   {
     id: 'assistant',
-    label: 'AI assistant',
+    label: 'Assistant IA',
     icon: 'chat',
-    title: 'An assistant that knows your class',
-    body: 'Ask for a warm-up on last week\u2019s weak skill, a re-teach plan for six students, or a retake that mirrors your quiz. The assistant answers with your data, not generic content.',
+    title: 'Un assistant qui connaît votre classe',
+    body: "Demandez une entrée en matière sur la compétence fragile de la semaine, un plan de reprise pour six élèves ou un contrôle de rattrapage calqué sur le vôtre. L'assistant répond avec vos données, pas avec du contenu générique.",
     bullets: [
-      'Grounds every answer in your assessments and standards',
-      'Drafts warm-ups, re-teach plans and retakes',
-      'Never invents a grade or a student\u2019s work',
+      'Chaque réponse s\'appuie sur vos évaluations et vos référentiels',
+      'Rédige entraînements, plans de reprise et contrôles de rattrapage',
+      "N'invente jamais une note ni le travail d'un élève",
     ],
     mock: <AssistantMock />,
   },
@@ -161,13 +162,13 @@ export function DeepDive() {
       <div className="container-page">
         <Reveal>
           <SectionHeading
-            eyebrow="The product"
+            eyebrow="Le produit"
             title={
               <>
-                Half the grading. <span className="gradient-text">Twice the feedback.</span>
+                Deux fois moins de correction. <span className="gradient-text">Deux fois plus de retours.</span>
               </>
             }
-            sub="One workflow, four jobs: mark it, understand it, act on it, and plan what comes next."
+            sub="Un seul flux de travail, quatre métiers : corriger, comprendre, agir et préparer la suite."
           />
         </Reveal>
 
@@ -211,8 +212,8 @@ export function DeepDive() {
                   </li>
                 ))}
               </ul>
-              <a href="#start" className="btn btn-primary mt-7 px-6 py-3 text-sm">
-                Try it on one of your quizzes
+              <a href="#correction" className="btn btn-primary mt-7 px-6 py-3 text-sm">
+                L'essayer sur un de vos contrôles
                 <Icon name="arrow" className="h-4 w-4" />
               </a>
             </div>
@@ -224,28 +225,28 @@ export function DeepDive() {
   )
 }
 
-/* ----------------------------------------------------------- testimonials */
+/* ----------------------------------------------------------- témoignages */
 
 const quotes = [
   {
     quote:
-      'I marked the same quiz for two classes in one prep period, and the comments were more specific than the ones I usually have time to write.',
+      "J'ai corrigé le même contrôle pour deux classes en une heure de disponibilité, et les commentaires étaient plus précis que ceux que j'ai le temps d'écrire d'habitude.",
     name: 'Dana Whitfield',
-    role: 'Algebra II · 11th grade',
+    role: 'Professeure · Algèbre II',
     tone: 'bg-grape',
   },
   {
     quote:
-      'The mastery view is what changed my teaching. I stopped re-teaching the whole unit and started targeting the two steps that actually broke down.',
+      "La vue par compétence a changé mon enseignement. J'ai arrêté de refaire toute la séquence et j'ai ciblé les deux étapes qui bloquaient vraiment.",
     name: 'Marcus Ellery',
-    role: 'Math department chair',
+    role: 'Coordinateur de mathématiques',
     tone: 'bg-sky',
   },
   {
     quote:
-      'It hands me a practice set built from what my students got wrong, and I still get to edit every single question. That balance is the whole point.',
+      "On me donne une fiche construite sur ce que mes élèves ont raté, et je peux encore modifier chaque question. Cet équilibre, c'est tout l'intérêt.",
     name: 'Priya Raman',
-    role: 'Geometry & Algebra I',
+    role: 'Géométrie & Algèbre I',
     tone: 'bg-mint',
   },
 ]
@@ -256,9 +257,9 @@ export function Testimonials() {
       <div className="container-page">
         <Reveal>
           <SectionHeading
-            eyebrow="Why teachers stay"
-            title="The feedback is the reason"
-            sub="Early users told us the same thing: the comments read like a teacher wrote them, because the rubric behind them is a teacher's."
+            eyebrow="Pourquoi ils restent"
+            title="Les retours sont la raison"
+            sub="Les premiers utilisateurs nous ont dit la même chose : les commentaires se lisent comme s'ils venaient d'un enseignant, parce que le barème derrière est celui d'un enseignant."
           />
         </Reveal>
 
@@ -286,7 +287,7 @@ export function Testimonials() {
   )
 }
 
-/* ----------------------------------------------------------- integrations */
+/* ------------------------------------------------------------ intégrations */
 
 const integrations = [
   'Canvas',
@@ -301,8 +302,8 @@ const integrations = [
   'Microsoft Teams',
   'ClassLink',
   'Edulastic',
-  'CSV export',
-  'Print & scan',
+  'Export CSV',
+  'Impression & scan',
 ]
 
 export function Integrations() {
@@ -314,9 +315,9 @@ export function Integrations() {
             <div aria-hidden="true" className="bg-dotgrid absolute inset-0 opacity-50" />
             <div className="relative">
               <SectionHeading
-                eyebrow="Integrations"
-                title="Works where you already teach"
-                sub="Import papers, sync rosters, export grades. Setup takes minutes and no IT ticket."
+                eyebrow="Intégrations"
+                title="Là où vous enseignez déjà"
+                sub="Importez des copies, synchronisez les listes, exportez les notes. L'installation prend quelques minutes, sans ticket au service informatique."
               />
             </div>
             <div className="relative mt-9 flex flex-wrap justify-center gap-2.5">
@@ -330,7 +331,7 @@ export function Integrations() {
               ))}
             </div>
             <p className="relative mt-7 text-xs text-muted">
-              Plus 15 more LMS and SIS platforms, and a plain-paper workflow for everything else.
+              Et 15 autres plateformes ENT/SIS, plus un flux papier pour tout le reste.
             </p>
           </div>
         </Reveal>
@@ -339,9 +340,9 @@ export function Integrations() {
   )
 }
 
-/* ---------------------------------------------------------------- privacy */
+/* --------------------------------------------------------- confidentialité */
 
-const compliance = ['FERPA', 'COPPA', 'GDPR', 'SOC 2 Type II', 'State privacy laws']
+const compliance = ['FERPA', 'COPPA', 'RGPD', 'SOC 2 Type II', 'Lois locales sur les données']
 
 export function Privacy() {
   return (
@@ -357,22 +358,23 @@ export function Privacy() {
               <div>
                 <span className="inline-flex items-center gap-2 rounded-full bg-white/12 px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wider text-white ring-1 ring-white/20">
                   <Icon name="lock" className="h-3.5 w-3.5" />
-                  Student data
+                  Données des élèves
                 </span>
                 <h2 className="mt-5 max-w-xl text-3xl font-extrabold leading-[1.1] tracking-[-0.03em] sm:text-4xl">
-                  Student work is never training data.
+                  Le travail des élèves n'est jamais une donnée d'entraînement.
                 </h2>
                 <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-white/80">
-                  VH.IA was built for minors, so privacy was a design constraint from day one — not a policy page added
-                  later. Papers, comments and rosters stay in your school&rsquo;s tenant, are encrypted in transit and at
-                  rest, and are deleted on your schedule.
+                  VH.IA a été conçu pour des mineurs : la confidentialité est une contrainte de conception depuis le
+                  premier jour, pas une page de politique ajoutée après coup. Copies, commentaires et listes restent dans
+                  l'espace de votre établissement, sont chiffrés en transit et au repos, et sont supprimés selon votre
+                  calendrier.
                 </p>
                 <ul className="mt-7 grid gap-3 sm:grid-cols-2">
                   {[
-                    'No model training on student work',
-                    'District-owned data, exportable anytime',
-                    'Role-based access with audit logs',
-                    'Retention controls per school',
+                    'Aucun entraînement de modèle sur les copies',
+                    "Données propriété de l'établissement, exportables à tout moment",
+                    "Accès par rôle avec journal d'audit",
+                    'Durées de conservation par établissement',
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-2.5 text-[13.5px] text-white/85">
                       <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-mint" strokeWidth={2.6} />
@@ -403,7 +405,7 @@ export function Privacy() {
   )
 }
 
-/* -------------------------------------------------------------------- CTA */
+/* ------------------------------------------------------------------- CTA */
 
 export function FinalCTA() {
   return (
@@ -417,25 +419,25 @@ export function FinalCTA() {
             />
             <div className="relative mx-auto max-w-2xl">
               <h2 className="text-3xl font-extrabold leading-[1.08] tracking-[-0.035em] text-ink sm:text-[2.6rem]">
-                Grade one class tonight.
+                Corrigez une classe ce soir.
                 <br />
-                <span className="gradient-text">Decide tomorrow.</span>
+                <span className="gradient-text">Décidez demain matin.</span>
               </h2>
               <p className="mt-4 text-[15px] leading-relaxed text-muted">
-                Upload a class set of scanned papers, watch VH.IA mark them, and keep every comment you like. No credit
-                card, no onboarding call, no setup.
+                Importez une pile de copies scannées, regardez VH.IA les corriger et gardez chaque commentaire qui vous
+                plaît. Sans carte bancaire, sans appel d'onboarding, sans installation.
               </p>
               <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
                 <a href="#start" className="btn btn-primary px-7 py-3.5 text-[15px]">
-                  Start free — 30 days
+                  Commencer — 30 jours gratuits
                   <Icon name="arrow" className="h-4 w-4" />
                 </a>
-                <a href="#how" className="btn btn-secondary px-7 py-3.5 text-[15px]">
-                  Book a 20-minute demo
+                <a href="#correction" className="btn btn-secondary px-7 py-3.5 text-[15px]">
+                  Réserver une démo de 20 minutes
                 </a>
               </div>
               <p className="mt-4 text-xs text-muted">
-                FERPA and COPPA compliant · Cancel anytime · Works with printed or scanned papers
+                Conforme FERPA et COPPA · Résiliable à tout moment · Fonctionne avec des copies imprimées ou scannées
               </p>
             </div>
           </div>

@@ -58,26 +58,26 @@ function ScoreRing({ score, total }: { score: number; total: number }) {
 }
 
 const gradedLines = [
-  { work: 'x² − 5x + 6 = 0', note: 'reads correctly', kind: 'ok', points: '0' },
-  { work: '(x − 2)(x − 3) = 0', note: 'correct factoring', kind: 'ok', points: '+3' },
-  { work: 'x = 2  x = 3', note: 'both roots found', kind: 'ok', points: '+3' },
-  { work: 'sum of roots = −5', note: 'sign slip: should be 5', kind: 'warn', points: '−1' },
-  { work: 'vertex at (2.5, −0.25)', note: 'shows the method', kind: 'ok', points: '+2' },
+  { work: 'x² − 5x + 6 = 0', note: 'lu correctement', kind: 'ok', points: '0' },
+  { work: '(x − 2)(x − 3) = 0', note: 'factorisation juste', kind: 'ok', points: '+3' },
+  { work: 'x = 2  x = 3', note: 'deux racines trouvées', kind: 'ok', points: '+3' },
+  { work: 'somme des racines = −5', note: 'erreur de signe : 5', kind: 'warn', points: '−1' },
+  { work: 'sommet en (2.5, −0.25)', note: 'méthode visible', kind: 'ok', points: '+2' },
 ]
 
 export function GradingMock({ compact = false }: { compact?: boolean }) {
   return (
-    <MockFrame label="Algebra II · Quiz 4 · Period 3">
+    <MockFrame label="Algèbre II · Contrôle 4 · Classe 3">
       <div className="flex items-center justify-between gap-3">
         <div className="flex items-center gap-2.5">
           <span className="grid h-8 w-8 place-items-center rounded-full bg-grape/10 text-xs font-bold text-grape">AR</span>
           <div className="leading-tight">
             <p className="text-xs font-bold text-ink">A. Rivera</p>
-            <p className="text-[10px] text-muted">4 of 12 papers graded · 38s</p>
+            <p className="text-[10px] text-muted">4 copies sur 12 corrigées · 38 s</p>
           </div>
         </div>
         <span className="rounded-full bg-mint/12 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-[#0a9b7c]">
-          Needs review
+          À valider
         </span>
       </div>
 
@@ -105,13 +105,13 @@ export function GradingMock({ compact = false }: { compact?: boolean }) {
         <div className="flex items-center gap-2.5">
           <ScoreRing score={18} total={20} />
           <div className="leading-tight">
-            <p className="text-[11px] font-bold text-ink">3 comments drafted</p>
-            <p className="text-[10px] text-muted">Aligned to CCSS A-REI.B.4</p>
+            <p className="text-[11px] font-bold text-ink">3 commentaires rédigés</p>
+            <p className="text-[10px] text-muted">Aligné sur CCSS A-REI.B.4</p>
           </div>
         </div>
         <div className="flex gap-1.5">
-          <span className="rounded-full px-2.5 py-1.5 text-[10px] font-semibold text-ink2 ring-1 ring-line">Edit</span>
-          <span className="rounded-full bg-grape px-2.5 py-1.5 text-[10px] font-semibold text-white">Approve</span>
+          <span className="rounded-full px-2.5 py-1.5 text-[10px] font-semibold text-ink2 ring-1 ring-line">Modifier</span>
+          <span className="rounded-full bg-grape px-2.5 py-1.5 text-[10px] font-semibold text-white">Valider</span>
         </div>
       </div>
     </MockFrame>
@@ -119,25 +119,25 @@ export function GradingMock({ compact = false }: { compact?: boolean }) {
 }
 
 const skills = [
-  { name: 'Completing the square', value: 92, tone: 'bg-mint' },
-  { name: 'Quadratic formula', value: 74, tone: 'bg-sky' },
-  { name: 'Factoring trinomials', value: 58, tone: 'bg-grapesoft' },
-  { name: 'Interpreting the discriminant', value: 41, tone: 'bg-coral' },
+  { name: 'Compléter le carré', value: 92, tone: 'bg-mint' },
+  { name: 'Formule du second degré', value: 74, tone: 'bg-sky' },
+  { name: 'Factoriser un trinôme', value: 58, tone: 'bg-grapesoft' },
+  { name: 'Interpréter le discriminant', value: 41, tone: 'bg-coral' },
 ]
 
 export function InsightsMock() {
   return (
-    <MockFrame label="Class mastery · 28 students" tone="text-mint">
+    <MockFrame label="Maîtrise de la classe · 28 élèves" tone="text-mint">
       <div className="flex items-baseline justify-between">
-        <p className="text-[11px] font-bold text-ink">Quadratics unit</p>
-        <p className="text-[10px] text-muted">last 3 assessments</p>
+        <p className="text-[11px] font-bold text-ink">Unité : second degré</p>
+        <p className="text-[10px] text-muted">3 dernières évaluations</p>
       </div>
       <ul className="mt-3 grid gap-2.5">
         {skills.map((skill) => (
           <li key={skill.name}>
             <div className="flex items-center justify-between text-[10.5px] font-medium text-ink2">
               <span>{skill.name}</span>
-              <span className="font-bold text-ink">{skill.value}%</span>
+              <span className="font-bold text-ink">{skill.value} %</span>
             </div>
             <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-lilac">
               <div className={cx('h-full rounded-full', skill.tone)} style={{ width: `${skill.value}%` }} />
@@ -148,8 +148,8 @@ export function InsightsMock() {
       <div className="mt-3.5 flex items-start gap-2 rounded-xl bg-lilac2 p-2.5 ring-1 ring-line/80">
         <Icon name="bolt" className="mt-0.5 h-3.5 w-3.5 shrink-0 text-grape" />
         <p className="text-[10.5px] leading-relaxed text-ink2">
-          <span className="font-bold text-ink">6 students</span> lost points on the same step. A 10-minute re-teach on the
-          discriminant would recover an estimated 12% of unit points.
+          <span className="font-bold text-ink">6 élèves</span> ont perdu des points à la même étape. Une reprise de 10
+          minutes sur le discriminant récupérerait environ 12 % des points de l'unité.
         </p>
       </div>
     </MockFrame>
@@ -157,17 +157,17 @@ export function InsightsMock() {
 }
 
 const practiceItems = [
-  { q: 'Solve 2x² + 4x − 6 = 0 by completing the square.', tag: 'completing the square' },
-  { q: 'Rewrite x² + 8x + 7 in vertex form.', tag: 'vertex form' },
-  { q: 'How many real solutions does 3x² − 4x + 5 = 0 have?', tag: 'discriminant' },
+  { q: 'Résolvez 2x² + 4x − 6 = 0 en complétant le carré.', tag: 'compléter le carré' },
+  { q: 'Écrivez x² + 8x + 7 sous forme canonique.', tag: 'forme canonique' },
+  { q: 'Combien de solutions réelles a 3x² − 4x + 5 = 0 ?', tag: 'discriminant' },
 ]
 
 export function PracticeMock() {
   return (
-    <MockFrame label="Practice set · built for A. Rivera" tone="text-sky">
+    <MockFrame label="Fiche d'exercices · pour A. Rivera" tone="text-sky">
       <div className="flex items-center justify-between gap-2">
-        <span className="rounded-full bg-sky/10 px-2.5 py-1 text-[10px] font-bold text-[#0a83b5]">3 targeted skills</span>
-        <span className="text-[10px] text-muted">editable · printable</span>
+        <span className="rounded-full bg-sky/10 px-2.5 py-1 text-[10px] font-bold text-[#0a83b5]">3 compétences ciblées</span>
+        <span className="text-[10px] text-muted">modifiable · imprimable</span>
       </div>
       <ol className="mt-3 grid gap-2">
         {practiceItems.map((item, i) => (
@@ -183,10 +183,10 @@ export function PracticeMock() {
         ))}
       </ol>
       <div className="mt-3 grid grid-cols-2 gap-1.5">
-        <span className="rounded-full bg-grape py-1.5 text-center text-[10px] font-semibold text-white">Assign online</span>
+        <span className="rounded-full bg-grape py-1.5 text-center text-[10px] font-semibold text-white">Assigner en ligne</span>
         <span className="rounded-full py-1.5 text-center text-[10px] font-semibold text-ink2 ring-1 ring-line">
           <Icon name="print" className="mr-1 inline h-3 w-3" />
-          Print
+          Imprimer
         </span>
       </div>
     </MockFrame>
@@ -195,21 +195,22 @@ export function PracticeMock() {
 
 export function AssistantMock() {
   return (
-    <MockFrame label="VH.IA assistant" tone="text-grapesoft">
+    <MockFrame label="Assistant VH.IA" tone="text-grapesoft">
       <div className="grid gap-2">
         <div className="ml-auto max-w-[85%] rounded-2xl rounded-br-md bg-grape px-3 py-2 text-[11px] leading-relaxed text-white">
-          My period 3 is still shaky on the discriminant. Build a warm-up that uses their actual mistakes.
+          Ma classe de 3e B hésite encore sur le discriminant. Prépare une entrée en matière à partir de leurs vraies
+          erreurs.
         </div>
         <div className="max-w-[92%] rounded-2xl rounded-bl-md bg-lilac2 px-3 py-2.5 text-[11px] leading-relaxed text-ink2 ring-1 ring-line/80">
-          <p className="mb-1.5 font-semibold text-ink">5-question warm-up ready</p>
+          <p className="mb-1.5 font-semibold text-ink">Entraînement de 5 questions prêt</p>
           <ul className="grid gap-1 text-[10.5px]">
-            <li>· 2 questions mirror the sign error from Quiz 4</li>
-            <li>· 1 sorting task: two roots, one root, no real roots</li>
-            <li>· 2 exit-ticket items at grade level</li>
+            <li>· 2 questions reprennent l'erreur de signe du contrôle 4</li>
+            <li>· 1 tri : deux racines, une racine, aucune racine réelle</li>
+            <li>· 2 tickets de sortie au niveau attendu</li>
           </ul>
           <div className="mt-2 flex flex-wrap gap-1">
             <span className="rounded-full bg-white px-2 py-0.5 text-[9px] font-semibold text-grape ring-1 ring-grape/15">
-              uses period 3 data
+              utilise les données de la classe
             </span>
             <span className="rounded-full bg-white px-2 py-0.5 text-[9px] font-semibold text-muted ring-1 ring-line">
               CCSS A-REI.B.4b
@@ -217,7 +218,7 @@ export function AssistantMock() {
           </div>
         </div>
         <div className="flex items-center gap-2 rounded-full bg-white px-3 py-2 ring-1 ring-line">
-          <span className="text-[10.5px] text-muted">Ask about your class…</span>
+          <span className="text-[10.5px] text-muted">Posez une question sur votre classe…</span>
           <span className="ml-auto grid h-6 w-6 place-items-center rounded-full bg-grape text-white">
             <Icon name="arrow" className="h-3 w-3" />
           </span>

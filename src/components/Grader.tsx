@@ -22,11 +22,13 @@ function draftFromSample(id: string): Draft {
 }
 
 const STATUS: Record<string, { label: string; cls: string; dot: string }> = {
-  correct: { label: 'Correct', cls: 'bg-mint/12 text-[#0a9b7c]', dot: 'bg-mint' },
-  partial: { label: 'Partial', cls: 'bg-butter/25 text-[#8a6100]', dot: 'bg-butter' },
-  missing: { label: 'Missing', cls: 'bg-coral/15 text-[#b93b3b]', dot: 'bg-coral' },
-  review: { label: 'Review', cls: 'bg-lilac text-ink2', dot: 'bg-ink2' },
+  correct: { label: 'Juste', cls: 'bg-mint/12 text-[#0a9b7c]', dot: 'bg-mint' },
+  partial: { label: 'Partiel', cls: 'bg-butter/25 text-[#8a6100]', dot: 'bg-butter' },
+  missing: { label: 'Manquant', cls: 'bg-coral/15 text-[#b93b3b]', dot: 'bg-coral' },
+  review: { label: 'À revoir', cls: 'bg-lilac text-ink2', dot: 'bg-ink2' },
 }
+
+const fmt = (n: number) => String(n).replace('.', ',')
 
 function ScoreDial({ percent, score, total }: { percent: number; score: number; total: number }) {
   const r = 33
@@ -54,7 +56,7 @@ function ScoreDial({ percent, score, total }: { percent: number; score: number; 
       </svg>
       <div className="absolute inset-0 grid place-items-center">
         <div className="text-center leading-none">
-          <p className="text-lg font-extrabold text-ink">{score}</p>
+          <p className="text-lg font-extrabold text-ink">{fmt(score)}</p>
           <p className="mt-1 text-[10px] font-semibold text-muted">/ {total}</p>
         </div>
       </div>
@@ -93,7 +95,7 @@ export default function Grader() {
 
   function correct() {
     if (!draft.student.trim()) {
-      setError("Paste the student's work before correcting.")
+      setError("Collez d'abord le travail de l'élève.")
       return
     }
     setError('')
@@ -116,25 +118,25 @@ export default function Grader() {
       <div className="container-page">
         <Reveal>
           <SectionHeading
-            eyebrow="Correction engine"
+            eyebrow="Moteur de correction"
             title={
               <>
-                Correct an assessment <span className="gradient-text">right here</span>
+                Corrigez une évaluation <span className="gradient-text">ici même</span>
               </>
             }
-            sub="Pick a sample or paste your own: the expected answer, the working you expect to see, and a student's submission. VH.IA marks it with partial credit and explains every point."
+            sub="Choisissez un exemple ou saisissez le vôtre : la réponse attendue, les étapes attendues et la copie d'un élève. VH.IA corrige avec crédit partiel et explique chaque point."
           />
         </Reveal>
 
         <Reveal delay={80}>
           <div className="mt-10 grid gap-5 lg:grid-cols-2">
-            {/* ------------------------------------------------------- inputs */}
+            {/* ------------------------------------------------------- saisie */}
             <div className="card p-6 sm:p-7">
               <div className="flex gap-1.5 rounded-full bg-lilac2 p-1 ring-1 ring-line">
                 {(
                   [
-                    { id: 'sample', label: 'Sample assessments' },
-                    { id: 'own', label: 'Your own assessment' },
+                    { id: 'sample', label: "Devoirs d'exemple" },
+                    { id: 'own', label: 'Votre propre devoir' },
                   ] as const
                 ).map((option) => (
                   <button
@@ -155,7 +157,7 @@ export default function Grader() {
               {mode === 'sample' ? (
                 <div className="mt-5">
                   <label htmlFor="sample" className="text-[11px] font-bold uppercase tracking-wider text-muted">
-                    Assessment
+                    Évaluation
                   </label>
                   <select
                     id="sample"
@@ -170,7 +172,7 @@ export default function Grader() {
                     ))}
                   </select>
                   <div className="mt-3 rounded-xl bg-lilac2 p-3 ring-1 ring-line/80">
-                    <p className="text-[10px] font-bold uppercase tracking-wider text-muted">Question</p>
+                    <p className="text-[10px] font-bold uppercase tracking-wider text-muted">Énoncé</p>
                     <p className="mt-1 font-hand text-xl leading-tight text-ink">{draft.prompt}</p>
                   </div>
                 </div>
@@ -178,20 +180,20 @@ export default function Grader() {
                 <div className="mt-5 grid gap-3">
                   <div>
                     <label htmlFor="prompt" className="text-[11px] font-bold uppercase tracking-wider text-muted">
-                      Question
+                      Énoncé
                     </label>
                     <input
                       id="prompt"
                       value={draft.prompt}
                       onChange={(e) => set('prompt', e.target.value)}
-                      placeholder="Solve 4x + 7 = 31"
+                      placeholder="Résolvez 4x + 7 = 31"
                       className="mt-1.5 w-full rounded-xl bg-white px-3 py-2.5 text-sm text-ink ring-1 ring-line outline-none focus:ring-2 focus:ring-grape/40"
                     />
                   </div>
                   <div className="grid gap-3 sm:grid-cols-[1fr_110px]">
                     <div>
                       <label htmlFor="expected" className="text-[11px] font-bold uppercase tracking-wider text-muted">
-                        Expected answer
+                        Réponse attendue
                       </label>
                       <input
                         id="expected"
@@ -218,7 +220,7 @@ export default function Grader() {
                   </div>
                   <div>
                     <label htmlFor="steps" className="text-[11px] font-bold uppercase tracking-wider text-muted">
-                      Working you expect to see — one step per line
+                      Étapes attendues — une par ligne
                     </label>
                     <textarea
                       id="steps"
@@ -234,7 +236,7 @@ export default function Grader() {
 
               <div className="mt-5">
                 <label htmlFor="student" className="text-[11px] font-bold uppercase tracking-wider text-muted">
-                  Student submission
+                  Copie de l'élève
                 </label>
                 <textarea
                   id="student"
@@ -242,7 +244,7 @@ export default function Grader() {
                   onChange={(e) => set('student', e.target.value)}
                   rows={5}
                   spellCheck={false}
-                  placeholder={'x² − 5x + 6 = 0\n(x − 2)(x − 3) = 0\nx = 2 or x = 3'}
+                  placeholder={'x² − 5x + 6 = 0\n(x − 2)(x − 3) = 0\nx = 2 ou x = 3'}
                   className="mt-1.5 w-full resize-y rounded-xl bg-white px-3 py-2.5 font-hand text-lg leading-snug text-ink ring-1 ring-line outline-none focus:ring-2 focus:ring-grape/40"
                 />
               </div>
@@ -252,30 +254,30 @@ export default function Grader() {
               <div className="mt-4 flex flex-wrap items-center gap-2">
                 <button type="button" onClick={correct} className="btn btn-primary px-5 py-3 text-sm">
                   <Icon name="sparkle" className="h-4 w-4" />
-                  Correct with VH.IA
+                  Corriger avec VH.IA
                 </button>
                 <button
                   type="button"
                   onClick={() => loadSample(sampleId)}
                   className="btn btn-secondary px-5 py-3 text-sm"
                 >
-                  Reset
+                  Réinitialiser
                 </button>
-                <span className="ml-auto text-[11px] text-muted">Runs in your browser</span>
+                <span className="ml-auto text-[11px] text-muted">Fonctionne dans votre navigateur</span>
               </div>
             </div>
 
-            {/* ------------------------------------------------------ results */}
+            {/* ------------------------------------------------------ résultats */}
             <div className="card flex flex-col p-6 sm:p-7">
               {!result ? (
                 <div className="flex flex-1 flex-col items-center justify-center py-12 text-center">
                   <span className="grid h-14 w-14 place-items-center rounded-2xl bg-lilac text-grape">
                     <Icon name="pen" className="h-7 w-7" />
                   </span>
-                  <p className="mt-4 text-sm font-bold text-ink">Your correction appears here</p>
+                  <p className="mt-4 text-sm font-bold text-ink">Votre correction apparaît ici</p>
                   <p className="mt-1.5 max-w-xs text-xs leading-relaxed text-muted">
-                    Score, per-criterion points, comments and the exact step where the reasoning breaks — ready for your
-                    review before anything reaches the student.
+                    Note, points par critère, commentaires et l'étape exacte où le raisonnement se brise — prêts pour
+                    votre validation avant tout envoi à l'élève.
                   </p>
                 </div>
               ) : (
@@ -285,7 +287,7 @@ export default function Grader() {
                     <div className="min-w-0 flex-1">
                       <div className="flex flex-wrap items-center gap-1.5">
                         <span className="rounded-full bg-grape/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-grape">
-                          {result.percent}%
+                          {result.percent} %
                         </span>
                         <span
                           className={cx(
@@ -293,13 +295,13 @@ export default function Grader() {
                             confidencePct >= 80 ? 'bg-mint/12 text-[#0a9b7c]' : 'bg-butter/30 text-[#8a6100]',
                           )}
                         >
-                          {confidencePct}% confidence
+                          {confidencePct} % de confiance
                         </span>
                       </div>
                       <p className="mt-2 text-[13px] font-semibold leading-snug text-ink">{result.summary}</p>
                       {confidencePct < 80 ? (
                         <p className="mt-1 text-[11px] leading-relaxed text-muted">
-                          Low confidence — read the flagged steps before releasing.
+                          Confiance faible — lisez les étapes signalées avant d'envoyer.
                         </p>
                       ) : null}
                     </div>
@@ -317,7 +319,7 @@ export default function Grader() {
                               {status.label}
                             </span>
                             <span className="w-11 shrink-0 text-right text-[11px] font-extrabold text-ink">
-                              {c.earned}/{c.max}
+                              {fmt(c.earned)}/{fmt(c.max)}
                             </span>
                           </div>
                           <p className="mt-1 pl-3.5 text-[11px] leading-relaxed text-ink2">{c.comment}</p>
@@ -344,7 +346,7 @@ export default function Grader() {
                     {approved ? (
                       <span className="inline-flex items-center gap-1.5 rounded-full bg-mint/12 px-3 py-2 text-[12px] font-bold text-[#0a9b7c]">
                         <Icon name="check" className="h-3.5 w-3.5" strokeWidth={3} />
-                        Approved — feedback ready to release
+                        Validé — le retour est prêt à être envoyé
                       </span>
                     ) : (
                       <>
@@ -353,10 +355,10 @@ export default function Grader() {
                           onClick={() => setApproved(true)}
                           className="btn btn-primary px-5 py-2.5 text-[13px]"
                         >
-                          Approve &amp; release
+                          Valider et envoyer
                         </button>
                         <button type="button" className="btn btn-secondary px-5 py-2.5 text-[13px]">
-                          Edit feedback
+                          Modifier le retour
                         </button>
                       </>
                     )}
@@ -368,9 +370,9 @@ export default function Grader() {
         </Reveal>
 
         <p className="mx-auto mt-6 max-w-2xl text-center text-[11.5px] leading-relaxed text-muted">
-          This public demo runs entirely in your browser with a transparent rubric — no student work leaves the page.
-          The production engine adds handwriting recognition and a model-graded rubric, with the same teacher-approval
-          step before release.
+          Cette démo publique tourne entièrement dans votre navigateur avec un barème transparent — aucune copie ne
+          quitte la page. Le moteur de production ajoute la reconnaissance de l'écriture manuscrite et un barème évalué
+          par modèle, avec la même validation par l'enseignant avant l'envoi.
         </p>
       </div>
     </section>

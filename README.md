@@ -1,73 +1,72 @@
-# VH.IA — AI correction for assessments
+# VH.IA — la correction des évaluations par IA
 
-A marketing site plus a working correction demo for an AI grading product. VH.IA reads a
-student's math work, awards partial credit, explains exactly where the reasoning breaks, and
-turns the mistakes into targeted practice.
+Un site vitrine doublé d'une démo de correction fonctionnelle pour un outil de correction assistée par IA.
+VH.IA lit le travail d'un élève, attribue le crédit partiel, explique exactement où le raisonnement se
+brise et transforme les erreurs en exercices ciblés.
 
-Built with **Vite + React + TypeScript + Tailwind CSS v4**. All copy, code and illustrations are
-original; no third-party site code, text or image assets are used.
+Construit avec **Vite + React + TypeScript + Tailwind CSS v4**. Tous les textes, le code et les
+illustrations sont originaux ; aucun code, texte ou visuel tiers n'est utilisé.
 
-## Getting started
+## Démarrage
 
 ```bash
 npm install
 npm run dev      # http://localhost:3000
-npm run build    # typecheck + production bundle into dist/
-npm run preview  # serve the built bundle
+npm run build    # vérification des types + bundle dans dist/
+npm run preview  # sert le bundle de production
 ```
 
-Requires Node 20+.
+Nécessite Node 20+.
 
-## The correction engine
+## Le moteur de correction
 
-`src/lib/grader.ts` is a transparent, local rubric engine used by the demo section
-(`src/components/Grader.tsx`):
+`src/lib/grader.ts` est un moteur de barème local et transparent, utilisé par la section de démo
+(`src/components/Grader.tsx`) :
 
-- normalises math notation (minus signs, exponents, fractions, TeX leftovers)
-- compares the student's final line against the expected answer, with numeric tolerance and
-  multi-value answers (`x = 2 or x = 3`)
-- detects **sign errors** and incomplete answers rather than marking them simply wrong
-- matches the working steps the teacher expects, awarding half credit when the values appear
-  but the step is not written out
-- returns per-criterion points, comments, review flags, a summary and a confidence score
+- normalise l'écriture mathématique (signes moins, exposants, fractions, restes de TeX)
+- compare la dernière ligne de l'élève à la réponse attendue, avec tolérance numérique et réponses
+  multiples (`x = 2 ou x = 3`)
+- détecte les **erreurs de signe** et les réponses incomplètes au lieu de tout marquer faux
+- vérifie les étapes que l'enseignant attend, avec demi-crédit quand les valeurs apparaissent mais que
+  l'étape n'est pas rédigée
+- renvoie les points par critère, les commentaires, les alertes, un résumé et un score de confiance
 
-It runs entirely in the browser: no student work is sent anywhere, and nothing is graded by a
-model. In the demo UI, a teacher must still approve the correction before it is released.
+Tout s'exécute dans le navigateur : aucune copie n'est envoyée nulle part et rien n'est corrigé par un
+modèle. Dans l'interface, l'enseignant doit valider la correction avant qu'elle ne soit envoyée.
 
-### Swapping in a real model
+### Brancher un vrai modèle
 
-`gradeWork()` takes `{ prompt, expected, steps, student, totalPoints }` and returns a
-`GradeResult`. To grade free-form handwriting or open-ended reasoning, keep the same return type
-and replace the body with a server-side call to your model of choice (never call a model with an
-API key from the browser). The demo's teacher-approval step is part of the product contract —
-keep it.
+`gradeWork()` reçoit `{ prompt, expected, steps, student, totalPoints }` et renvoie un `GradeResult`.
+Pour corriger de l'écriture libre ou des raisonnements ouverts, garder ce type de retour et remplacer le
+corps de la fonction par un appel au modèle, **côté serveur** (jamais de clé API dans le navigateur).
+L'étape de validation par l'enseignant fait partie du produit : la conserver.
 
 ## Structure
 
 ```
 src/
-  App.tsx                 page composition
-  index.css               Tailwind v4 theme tokens, keyframes, component classes
-  lib/grader.ts           correction + partial-credit engine, sample assessments
+  App.tsx                 composition de la page
+  index.css               jetons de thème Tailwind v4, animations, classes utilitaires
+  lib/grader.ts           moteur de correction et crédit partiel, devoirs d'exemple
   components/
-    Nav.tsx               sticky nav with product/solutions/resources dropdowns + mobile panel
-    Hero.tsx              headline, CTAs, floating correction card
-    Grader.tsx            interactive correction demo (samples or your own assessment)
-    mocks.tsx             product UI mocks (correction, insights, practice, assistant)
-    Sections.tsx          stats, pillars, tabbed deep dive, testimonials, integrations, privacy, CTA
+    Nav.tsx               navigation collante avec menus déroulants + panneau mobile
+    Hero.tsx              titre, boutons, carte de correction flottante
+    Grader.tsx            démo de correction interactive (exemples ou devoir personnel)
+    mocks.tsx             maquettes produit (correction, analyses, exercices, assistant)
+    Sections.tsx          chiffres clés, piliers, produit, témoignages, intégrations, confidentialité, CTA
     Footer.tsx
-    ui.tsx                icons, logo, mascot, scroll-reveal, shared heading
+    ui.tsx                icônes, logo, mascotte, apparition au défilement, titres partagés
 ```
 
 ## Notes
 
-- Integrations and compliance badges (FERPA, COPPA, GDPR, SOC 2) are illustrative placeholders —
-  replace them with what the real product supports before publishing.
-- Testimonials are fictional sample content.
-- The hero's "3.4 hrs saved" figure is sample marketing copy.
-- Fonts come from Google Fonts (Inter, Caveat); everything else is CSS and inline SVG.
+- Les intégrations et badges de conformité (FERPA, COPPA, RGPD, SOC 2) sont des exemples à remplacer
+  par ce que le produit réel prend en charge.
+- Les témoignages sont fictifs.
+- Le chiffre « 3,4 h » du hero est un texte marketing d'exemple.
+- Les polices viennent de Google Fonts (Inter, Caveat) ; le reste est en CSS et SVG inline.
 
-## Deploy
+## Déploiement
 
-`npm run build` produces a fully static site in `dist/`, deployable to any static host
-(GitHub Pages, Cloudflare Pages, Netlify, Vercel).
+`npm run build` produit un site entièrement statique dans `dist/`, déployable sur n'importe quel hébergeur
+statique (GitHub Pages, Cloudflare Pages, Netlify, Vercel).

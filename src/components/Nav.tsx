@@ -4,22 +4,22 @@ import { cx, Icon, Logo } from './ui'
 type MenuItem = { title: string; desc: string; icon: string; href: string }
 
 const MENUS: Record<string, MenuItem[]> = {
-  Product: [
-    { title: 'AI correction', desc: 'Read the work, award the partial credit.', icon: 'pen', href: '#correction' },
-    { title: 'Actionable insights', desc: 'Mastery by skill, not just a score.', icon: 'chart', href: '#insights' },
-    { title: 'Targeted practice', desc: 'Activities built from real mistakes.', icon: 'target', href: '#practice' },
-    { title: 'AI assistant', desc: 'An assistant that knows your class.', icon: 'chat', href: '#assistant' },
+  Produit: [
+    { title: 'IA de correction', desc: 'Lit la copie, attribue le crédit partiel.', icon: 'pen', href: '#correction' },
+    { title: 'Analyses actionnables', desc: 'La maîtrise par compétence, pas juste une note.', icon: 'chart', href: '#insights' },
+    { title: 'Exercices ciblés', desc: 'Des activités construites sur les vraies erreurs.', icon: 'target', href: '#practice' },
+    { title: 'Assistant IA', desc: 'Un assistant qui connaît votre classe.', icon: 'chat', href: '#assistant' },
   ],
   Solutions: [
-    { title: 'For teachers', desc: 'Get your evenings back.', icon: 'users', href: '#teachers' },
-    { title: 'For departments', desc: 'Shared rubrics and reporting.', icon: 'layers', href: '#integrations' },
-    { title: 'For schools', desc: 'Rollout, training and privacy review.', icon: 'shield', href: '#privacy' },
+    { title: 'Pour les enseignants', desc: 'Retrouvez vos soirées.', icon: 'users', href: '#teachers' },
+    { title: 'Pour les équipes', desc: 'Barèmes et bilans partagés.', icon: 'layers', href: '#integrations' },
+    { title: 'Pour les établissements', desc: 'Déploiement, formation et conformité.', icon: 'shield', href: '#privacy' },
   ],
-  Resources: [
-    { title: 'Blog', desc: 'Grading research and classroom notes.', icon: 'book', href: '#' },
-    { title: 'Tutorials', desc: 'Short walkthroughs, start to finish.', icon: 'play', href: '#' },
-    { title: 'Webinars', desc: 'Live sessions with math teachers.', icon: 'users', href: '#' },
-    { title: 'Help center', desc: 'Answers, guides and support.', icon: 'chat', href: '#' },
+  Ressources: [
+    { title: 'Blog', desc: 'Recherche sur la correction et notes de classe.', icon: 'book', href: '#' },
+    { title: 'Tutoriels', desc: 'Démonstrations courtes, de A à Z.', icon: 'play', href: '#' },
+    { title: 'Webinaires', desc: 'Sessions en direct avec des enseignants.', icon: 'users', href: '#' },
+    { title: "Centre d'aide", desc: 'Réponses, guides et support.', icon: 'chat', href: '#' },
   ],
 }
 
@@ -66,11 +66,11 @@ export default function Nav() {
               : 'bg-transparent',
           )}
         >
-          <a href="#top" className="shrink-0" aria-label="VH.IA home">
+          <a href="#top" className="shrink-0" aria-label="Accueil VH.IA">
             <Logo />
           </a>
 
-          <nav className="hidden items-center gap-1 lg:flex" aria-label="Main">
+          <nav className="hidden items-center gap-1 lg:flex" aria-label="Navigation principale">
             {Object.keys(MENUS).map((key) => (
               <div key={key} className="relative" onMouseEnter={() => setOpen(key)}>
                 <button
@@ -113,26 +113,26 @@ export default function Nav() {
               </div>
             ))}
             <a href="#correction" className="rounded-full px-3.5 py-2 text-sm font-semibold text-ink2 hover:text-grape">
-              Live demo
+              Démo
             </a>
             <a href="#pricing" className="rounded-full px-3.5 py-2 text-sm font-semibold text-ink2 hover:text-grape">
-              Pricing
+              Tarifs
             </a>
           </nav>
 
           <div className="hidden items-center gap-2 lg:flex">
             <a href="#" className="rounded-full px-3 py-2 text-sm font-semibold text-ink2 hover:text-grape">
-              Log in
+              Se connecter
             </a>
             <a href="#start" className="btn btn-primary px-5 py-2.5 text-sm">
-              Start free
+              Commencer gratuitement
             </a>
           </div>
 
           <button
             type="button"
             onClick={() => setMobile((v) => !v)}
-            aria-label={mobile ? 'Close menu' : 'Open menu'}
+            aria-label={mobile ? 'Fermer le menu' : 'Ouvrir le menu'}
             aria-expanded={mobile}
             className="grid h-10 w-10 place-items-center rounded-full bg-grape text-white lg:hidden"
           >
@@ -162,10 +162,10 @@ export default function Nav() {
             ))}
             <div className="flex gap-2 pt-4">
               <a href="#start" onClick={() => setMobile(false)} className="btn btn-primary flex-1 px-5 py-3 text-sm">
-                Start free
+                Commencer
               </a>
               <a href="#" className="btn btn-secondary flex-1 px-5 py-3 text-sm">
-                Log in
+                Se connecter
               </a>
             </div>
           </div>

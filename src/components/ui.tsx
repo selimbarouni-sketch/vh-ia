@@ -107,7 +107,7 @@ export function Logo({ className = '' }: { className?: string }) {
 
 export function Mascot({ className = 'h-40 w-40' }: { className?: string }) {
   return (
-    <svg viewBox="0 0 220 220" className={className} role="img" aria-label="VH.IA mascot">
+    <svg viewBox="0 0 220 220" className={className} role="img" aria-label="Mascotte VH.IA">
       <defs>
         <linearGradient id="body" x1="0" y1="0" x2="1" y2="1">
           <stop offset="0%" stopColor="#8b6dff" />
